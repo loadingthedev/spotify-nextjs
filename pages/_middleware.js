@@ -5,7 +5,7 @@ export async function middleware(req) {
   //token will exit if user is logged in
   const token = await getToken({ req, secret: process.env.JWT_SECRET });
   const { pathname } = req.nextUrl;
-  console.log(pathname);
+  // console.log(pathname);
 
   if (pathname === "/login" && token) {
     return NextResponse.redirect("/");
