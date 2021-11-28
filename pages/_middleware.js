@@ -7,9 +7,9 @@ export async function middleware(req) {
   const { pathname } = req.nextUrl;
   // console.log(pathname);
 
-  if (pathname === "/login" && token) {
-    return NextResponse.redirect("/");
-  }
+  // if (pathname === "/login" && token) {
+  //   return NextResponse.redirect("/");
+  // }
   //Allow the user to request if the user is true..
   // 1.It is a request fro next auth session & provider fetching
   // 2.token exists

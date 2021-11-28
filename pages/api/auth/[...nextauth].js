@@ -7,14 +7,14 @@ async function refreshAcsessToken(token) {
     spotifyApi.setAccessToken(token.accessToken);
     spotifyApi.setRefreshToken(token.refreshToken);
 
-    const { body: refreshedToken } = await spotifyApi.resetAccessToken();
+    const { body: refreshedToken } = await spotifyApi.refreshAccessToken();
 
     // console.log("Refreshed token is " + refreshedToken);
 
     return {
       ...token,
       accessToken: refreshedToken.access_token,
-      accessTokenExpires: Date.now + refreshToken.expires_in * 1000,
+      accessTokenExpires: Date.now + refreshedToken.expires_in * 1000,
       refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
     };
   } catch (error) {
@@ -38,7 +38,7 @@ export default NextAuth({
   ],
   secret: process.env.JWT_SECRET,
   pages: {
-    signIn: "./login",
+    signIn: "/login",
   },
   callbacks: {
     async jwt({ token, account, user }) {
